@@ -1,0 +1,81 @@
+﻿@page
+@model PhotosDisplayWebsite.Pages.Images.CreateModel
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Create";
+}
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/bootstrap-fileinput/5.2.6/css/fileinput.css" crossorigin="anonymous">
+
+<h1>Create</h1>
+
+<h4>Image</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                 <label asp-for="FileUpload.FormFiles"></label>
+                 <input asp-for="FileUpload.FormFiles" type="file" multiple/>
+                 <span asp-validation-for="FileUpload.FormFiles"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image.UploadTime" class="control-label"></label>
+                <input asp-for="Image.UploadTime" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" disabled="disabled"/>
+                <span asp-validation-for="Image.UploadTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image.Title" class="control-label" ></label>
+                <input asp-for="Image.Title" class="form-control" />
+                <span asp-validation-for="Image.Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Image.Uploader" class="control-label"></label>
+                <input asp-for="Image.Uploader" class="form-control" />
+                <span asp-validation-for="Image.Uploader" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image.Description" class="control-label"></label>
+                <input asp-for="Image.Description" class="form-control" />
+                <span asp-validation-for="Image.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-page-handler="Upload" class="btn btn-primary" type="submit" value="Upload" />
+                <!-- <input type="submit" value="Create" class="btn btn-primary" /> -->
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+<p class="result">
+    @Model.Result
+</p>
+
+<!--
+ <div class="position-fixed bottom-0 end-0 p-3">
+         <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+             <div class="toast-header">
+                 <strong class="me-auto">提示</strong>
+                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+             </div>
+             <div class="toast-body">
+                 @Model.Result
+             </div>
+         </div>
+     </div>
+ <script>
+     (function showToast() {
+         var toast = new bootstrap.Toast(document.getElementById('toast'));
+         toast.show();
+         })();
+ </script>
+-->
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

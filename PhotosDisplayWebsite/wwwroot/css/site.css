@@ -1,0 +1,155 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.image-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 每行 5 列 */
+    gap: 10px; /* 设置间距 */
+}
+
+.image-box {
+    border: 1px solid #333;
+    text-align: center;
+    padding: 20px;
+}
+
+/* The explanation color-profile the following css is in https://segmentfault.com/a/1190000009388832 */
+.card {
+    width: 240px;
+    height: 222px;
+    margin: 1px auto;
+    position: center;
+    background-color: white;
+}
+
+.card a {
+    color: #333;
+    text-decoration: none;
+}
+
+.card:hover .card-image img {
+    width: 160%;
+}
+
+.card-image {
+    height: 125px;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 150%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition-property: filter width;
+    transition-duration: .3s;
+    transition-timing-function: ease;
+}
+
+.card-body {
+    text-align: center;
+    padding: 15px 20px;
+    box-sizing: border-box;
+}
+
+.card-date {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.card-title,
+.card-excerpt {
+    width: auto;
+    height: 20px;
+    font-family: 'Playfair Display', serif;
+}
+
+.card-date,
+.card-title {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.card-date,
+.card-excerpt {
+    color: #777;
+}
+
+.search-box {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.custom-search-box {
+    max-width: 800px;
+    /* 设置最大宽度 */
+    width: 100%;
+    /* 自适应宽度 */
+}
+
+ul.pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    position: center;
+}
+
+ul.pagination li {
+    display: inline;
+}
+
+ul.pagination li a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+}
+
+.pagination li:first-child a {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.pagination li:last-child a {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+ul.pagination li a.active {
+    background-color: #0d6efd;
+    color: white;
+    border: 1px solid #0d6efd;
+}
+
+ul.pagination li a:hover:not(.active) {
+    background-color: white;
+}

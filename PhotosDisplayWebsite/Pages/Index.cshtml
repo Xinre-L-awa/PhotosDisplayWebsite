@@ -1,0 +1,32 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>这是一个资源网站，使用 <a href="https://learn.microsoft.com/aspnet/core"> ASP.NET Core</a> 构建.</p>
+</div>
+
+@if (Model.LoginResult == "Success")
+{
+    <p>@Model.Name 欢迎回来</p>
+}
+else
+{
+    <p>请登录</p>
+}
+
+<hr />
+
+<p>用户列表</p>
+<ul class="list-group">
+    @foreach (var account in Model.accounts)
+    {
+    <li class="list-group-item">
+        @account.NickName
+        <span style="float: right">Uid: @account.Uid</span>
+    </li>
+    }
+</ul>

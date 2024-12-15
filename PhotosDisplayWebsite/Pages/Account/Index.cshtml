@@ -1,0 +1,41 @@
+﻿@page "{uid}"
+@model PhotosDisplayWebsite.Pages.Account.IndexModel
+@{
+}
+
+@if (Model.IsNotFound)
+{
+        <h2>请检查 uid 是否正确</h2>
+}
+else
+{
+        <div class="col-md-6">
+            <dl class="row">
+                <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Account.NickName)
+                </dt>
+                <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Account.NickName)
+                </dd>
+                <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Account.Uid)
+                </dt>
+                <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Account.Uid)
+                </dd>
+                <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Account.Email)
+                </dt>
+                <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Account.Email)
+                </dd>
+                <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Account.CreateTime)
+                </dt>
+                <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Account.CreateTime)
+                </dd>
+                <a href="./Delete?uid=@Model.Account.Uid">Delete</a>
+            </dl>
+        </div>
+}

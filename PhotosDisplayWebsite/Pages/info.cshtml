@@ -1,0 +1,20 @@
+﻿@page ""
+@model PhotosDisplayWebsite.Pages.infoModel
+@{
+	FileInfo[] images = new DirectoryInfo("wwwroot/images").GetFiles();
+	bool exits = false;
+	foreach (var image in images)
+	{
+		if (Convert.ToString(ViewData["img"]) == image.Name)
+		{
+				<img src="~/images/@image.Name" style="height: 50%; width: 50%"></img>
+			exits = true;
+			break;
+		}
+	}
+	if (!exits)
+	{
+				<h2>The image does not exit.</h2>
+	}
+	
+}

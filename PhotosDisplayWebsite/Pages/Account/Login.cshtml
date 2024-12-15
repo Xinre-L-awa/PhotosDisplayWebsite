@@ -1,0 +1,35 @@
+﻿@page
+@model PhotosDisplayWebsite.Pages.Account.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center">登录</h2>
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label type="text" asp-for="Username" class="control-label">Nickname <span class="text-danger">*</span></label>
+                    <input type="text" asp-for="Username" class="form-control" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label type="text" asp-for="Password" class="control-label">Password <span class="text-danger">*</span></label>
+                    <input type="text" asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+               @*  <div class="form-group">
+                    <label asp-for="Duration" class="control-label">Duration(day)</label>
+                    <input asp-for="Duration" class="form-control" type="number" value="5"/>
+                    <span asp-validation-for="Duration" class="text-danger"></span>
+                </div> *@
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

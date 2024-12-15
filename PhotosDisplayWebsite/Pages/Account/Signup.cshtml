@@ -1,0 +1,78 @@
+﻿@page
+@model PhotosDisplayWebsite.Pages.Account.RegisterPageModel;
+
+@{
+    Layout = "_LoginLayout";
+    ViewData["Title"] = "用户 - 注册";
+}
+
+<h1>注册页</h1>
+
+<h4>NewAccount</h4>
+<hr />
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center">注册</h2>
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="NewAccount.NickName" class="control-label">Nickname <span class="text-danger">*</span></label>
+                    <input asp-for="NewAccount.NickName" class="form-control" />
+                    <span asp-validation-for="NewAccount.NickName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NewAccount.Email" class="control-label">Email Address</label>
+                    <input asp-for="NewAccount.Email" class="form-control" />
+                    <span asp-validation-for="NewAccount.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NewAccount.Password" class="control-label">Password <span class="text-danger">*</span></label>
+                    <input asp-for="NewAccount.Password" class="form-control" />
+                    <span asp-validation-for="NewAccount.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Register</button>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+</div>
+
+@if (Model.Result != string.Empty)
+{
+    <div class="position-fixed bottom-0 end-0 p-3">
+        <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">注册失败</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                @Model.Result
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function showToast() {
+            var toast = new bootstrap.Toast(document.getElementById('toast'));
+            toast.show();
+        })();
+    </script>
+}
+
+
+
+
+<div>
+    <a href="./Login">登录</a>
+    <a asp-page="../Index">返回</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

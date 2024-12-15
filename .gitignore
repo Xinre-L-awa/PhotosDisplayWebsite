@@ -361,4 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/PhotosDisplayWebsite/wwwroot/_images/QQ图片20240327205413.jpg
+
+/PhotosDisplayWebsite/wwwroot/_images/

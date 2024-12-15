@@ -1,0 +1,187 @@
+﻿@page "{searchString?}"
+@model PhotosDisplayWebsite.Pages.Images.IndexModel
+
+@{
+    Layout = "_ImageSearchPageLayout";
+    ViewData["Title"] = "Index";
+
+
+    int page_amount = Convert.ToInt32(ViewData["page_amount"]);
+    int current_page_index = Convert.ToInt16(ViewData["page_index"]);
+
+    int previous_page_index = current_page_index == 1 ? 1 : current_page_index - 1;
+    int next_page_index = current_page_index == page_amount ? page_amount : current_page_index + 1;
+
+    string GetFileBriefName(string name)
+    {
+        string res = "";
+        foreach (var chr in name)
+        {
+            if (chr == '.')
+            {
+                break;
+            }
+
+            res += chr;
+        }
+
+        return res;
+    }
+
+    string GetFileNameFromPath(string path)
+    {
+        string[] tmp = path.Split(new char[] { '/' });
+        return tmp[tmp.Length - 1];
+    }
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+@if (Convert.ToInt32(ViewData["display_mode"]) == 0)
+{
+    <div class="container-fluid">
+        <form>
+            <div class="row align-items-center">
+                <div class="col-md-8 offset-md-2 custom-search-box">
+                    <div class="input-group mb-3">
+                        <input type="text" asp-for="SearchString" class="form-control" placeholder="Search..." aria-label="Search" aria-describedby="basic-addon1">
+                        <button class="btn btn-outline-secondary" type="submit">搜索</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    
+
+    @* @for (int i = 0; i < Math.Ceiling((decimal)Model.Image.Count / 5); i++)
+    {
+        <div class="row">
+        @for (int j=i * 5; j < (i + 1) * 5 & j < Model.Image.Count; j++)
+        {
+            <div class="col-3">
+                <div class="card">
+                    <a href="~/Images/Details?id=@Model.Image[j]">
+                        <div class="card-image">
+                            <img src="@Model.Image[j].FileUrl" alt="None" />
+                        </div>
+                        <div class="card-body">
+                            <div class="card-date">
+                                <time>
+                                    @Model.Image[j].UploadTime
+                                </time>
+                            </div>
+                            <div class="card-title">
+                                <h3>
+                                    @Model.Image[j].Title
+                                </h3>
+                            </div>
+                            <div class="card-exceprt">
+                                <p>
+                                    @Model.Image[j].Description
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        }
+        </div>
+    } *@
+
+    <div class="image-container">
+            @foreach (var item in Model.Image)
+            {
+                        <div class="box" style="float: left;">
+                            <div class="card">
+                                <a href="~/Images/Details?id=@item.Id">
+                                    <div class="card-image">
+                                        <img src="~/@item.FileUrl" alt="None" />
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="card-date">
+                                            <time>
+                                                @item.UploadTime
+                                            </time>
+                                        </div>
+                                        <div class="card-title">
+                                            <h5>
+                                                @item.Title
+                                            </h5>
+                                        </div>
+                                        <div class="card-exceprt">
+                                            <p style="font-size: small;">
+                                                @item.Description
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+            }
+        </div>
+    </div>
+}
+else
+{
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Image[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image[0].UploadTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image[0].FileUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image[0].Uploader)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Image) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UploadTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Uploader)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+}
+
+
+<ul class="pagination" style="position: center">
+    <li><a href="http://@(Request.Host)/Images/?SearchString=@ViewData["SearchString"]&page=@previous_page_index">«</a></li>
+@for (int i = 1; i <= page_amount; i++)
+{
+@if (i == current_page_index)
+{
+    <li><a class="active" href="#">@i</a></li>
+}
+else
+{
+    <li><a href="http://@(Request.Host)/Images/?SearchString=@ViewData["SearchString"]&page=@i">@i</a></li>
+}
+}
+    <li><a href="http://@(Request.Host)/Images/?SearchString=@ViewData["SearchString"]&page=@next_page_index">»</a></li>
+</ul>
