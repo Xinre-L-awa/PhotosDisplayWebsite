@@ -24,9 +24,9 @@ else
 <ul class="list-group">
     @foreach (var account in Model.accounts)
     {
-    <li class="list-group-item">
+    <a class="list-group-item" href="./Account/@account.Uid">
         @account.NickName
         <span style="float: right">Uid: @account.Uid</span>
-    </li>
+    </a>
     }
 </ul>

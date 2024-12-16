@@ -3,7 +3,7 @@
 
 @{
     Layout = "_ImageSearchPageLayout";
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "搜索";
 
 
     int page_amount = Convert.ToInt32(ViewData["page_amount"]);
@@ -11,28 +11,6 @@
 
     int previous_page_index = current_page_index == 1 ? 1 : current_page_index - 1;
     int next_page_index = current_page_index == page_amount ? page_amount : current_page_index + 1;
-
-    string GetFileBriefName(string name)
-    {
-        string res = "";
-        foreach (var chr in name)
-        {
-            if (chr == '.')
-            {
-                break;
-            }
-
-            res += chr;
-        }
-
-        return res;
-    }
-
-    string GetFileNameFromPath(string path)
-    {
-        string[] tmp = path.Split(new char[] { '/' });
-        return tmp[tmp.Length - 1];
-    }
 }
 
 <h1>Index</h1>

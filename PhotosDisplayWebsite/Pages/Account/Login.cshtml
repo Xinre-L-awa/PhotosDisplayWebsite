@@ -1,7 +1,7 @@
 ﻿@page
 @model PhotosDisplayWebsite.Pages.Account.LoginModel
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "登录";
 }
 
 <div class="container mt-5">
@@ -33,3 +33,25 @@
         </div>
     </div>
 </div>
+
+@if (Model.Result != "Success")
+{
+    <div class="position-fixed top-0 end-0 p-3">
+        <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">登录失败</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                @Model.Result
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function showToast() {
+            var toast = new bootstrap.Toast(document.getElementById('toast'));
+            toast.show();
+        })();
+    </script>
+}

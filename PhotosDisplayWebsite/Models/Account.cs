@@ -12,10 +12,12 @@ namespace PhotosDisplayWebsite.Models
         /// 0 - Admin
         /// 1 - NewAccount
         /// </summary>
+        [Display(Name = "用户组")]
         [Required]
         public int AccountGroup { get; set; } = 1;
 
         [DataType(DataType.Date)]
+        [Display(Name = "创建日期")]
         [Required]
         public DateTime CreateTime { get; set; }
 

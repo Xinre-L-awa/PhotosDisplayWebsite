@@ -39,12 +39,11 @@ namespace PhotosDisplayWebsite.Pages.Account
 
             foreach (var account in await _context.Accounts.ToListAsync())
             {
-                Console.WriteLine($"{account.NickName}, {Username}");
                 if (account.NickName == Username)
                 {
                     if (account.Password != Password)
                     {
-                        Result = "LoginFailed";
+                        Result = "√‹¬Î¥ÌŒÛ";
                         return Page();
                     }
 
